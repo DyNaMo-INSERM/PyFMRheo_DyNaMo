@@ -8,7 +8,6 @@ requires = [
     "numpy", 
     "scipy",
     "lmfit",
-    "pyfmreader",
     "requests"
 ]
 build-backend = "setuptools.build_meta"
