@@ -1,15 +1,16 @@
 # Pyfmrheo
-
+This is the DyNaMo labs branch of the original PyFMRheo.
 In development, not fully stable.
 If you find any issues please open an issue at:
 https://github.com/jlopezalo/PyFMRheo/issues
 
 If you have any questions, contact:
-jla.lopez.18@gmail.com
+felix.rico@inserm.fr
 
 ## Installation
 ```
-pip install pyfmrheo
+pip install -e git+https://github.com/DyNaMo-INSERM/PyFMRheo_DyNaMo@main#egg=pyfmrheo_dynamo    
+
 ```
 
 ## Usage
