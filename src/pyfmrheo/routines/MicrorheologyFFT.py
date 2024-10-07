@@ -77,13 +77,14 @@ def doMicrorheologyFFT(fdc, param_dict):
                 f1, a1,fi1 = row_below['frequency'], row_below['amp_quotient'],row_below['fi_degrees']
                 f2, a2,fi2 = row_above['frequency'], row_above['amp_quotient'],row_above['fi_degrees']
                 
-                # Interpolated amp_quotient
-                if param_dict['corr_amp']:
-                    amp_quotient = a1 + (a2 - a1) * (frequency - f1) / (f2 - f1)
+               
                 fi =  fi1 + (fi2 - fi1) * (frequency - f1) / (f2 - f1)
 
                 print(f" frequency not found {frequency}, therefore Interpolated amp coeff is {amp_quotient}")
-            
+                if param_dict['corr_amp']:
+                    amp_quotient = a1 + (a2 - a1) * (frequency - f1) / (f2 - f1)
+                else:
+                    amp_quotient = 1
                 #print(f"The frequency {frequency} was not found in the piezo characterization dataframe")
             else:
                 fi = piezoChar['fi_degrees'].item() # In degrees
