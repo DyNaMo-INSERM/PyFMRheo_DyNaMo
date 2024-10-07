@@ -92,10 +92,10 @@ def ComputeComplexModulusFFT(
 
     # Correct zheight based on amplitude quotient
     # obtained from piezo characterization routine
-    zheight = zheight * amp_quotient
+    zheight_corr = zheight * amp_quotient
 
     # Get indentation and force
-    indentation = zheight - deflection - (poc[0] - poc[1])
+    indentation = zheight_corr - deflection - (poc[0] - poc[1])
     force = deflection * k - (poc[1] * k)
 
     # Compute transfer function
