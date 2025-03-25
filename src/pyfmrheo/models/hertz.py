@@ -122,9 +122,7 @@ class HertzModel:
 
     def fit(self, indentation, force, sample_height=None):
         # If sample height is given, assign sample height
-        self.run_fit_ident = indentation
-        self.run_fit_force = force
-        self.sample_height = sample_height
+        #self.run_fit_ident = indentation;self.run_fit_force = force;self.sample_height = sample_height
         
         
         coeff, n = get_coeff(self.ind_geom, self.tip_parameter, self.poisson_ratio)

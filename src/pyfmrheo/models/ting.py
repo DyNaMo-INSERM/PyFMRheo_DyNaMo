@@ -210,9 +210,7 @@ class TingModel:
         return np.r_[FtNC, FJ+F0, FrNC]+smooth(numdiff(delta)*vdrag/numdiff(time), 21)
     
     def fit(self, time, F, delta, t0, idx_tm=None, smooth_w=None, v0t=None, v0r=None):
-        self.fit_time = time 
-        self.fit_force = F
-        self.fit_ind = delta
+        #self.fit_time = time;self.fit_force = F;self.fit_ind = delta
         
         # Define fixed params
         self.t0 = t0
