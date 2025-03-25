@@ -196,7 +196,7 @@ def Stark_Chi_force_constant(
         fR1_khz = fR1 * 1e-3 # Hz --> kHz
         k_GCI=SaderGCI_CalculateK(username, password, selectedCantCode, fR1_khz, Q1)
     else:
-        k_GCI=np.NaN
+        k_GCI=np.nan
     
     # Return results
     return k0, k_GCI, invOLS_SHO, invOLS_H

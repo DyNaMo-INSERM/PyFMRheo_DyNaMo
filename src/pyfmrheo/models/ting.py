@@ -53,6 +53,7 @@ class TingModel:
         # Moximum indentation time
         self.idx_tm = None
     
+
     def build_params(self):
         params = Parameters()
         params.add('E0', value=self.E0_init, min=self.E0_min, max=self.E0_max)
@@ -209,6 +210,10 @@ class TingModel:
         return np.r_[FtNC, FJ+F0, FrNC]+smooth(numdiff(delta)*vdrag/numdiff(time), 21)
     
     def fit(self, time, F, delta, t0, idx_tm=None, smooth_w=None, v0t=None, v0r=None):
+        self.fit_time = time 
+        self.fit_force = F
+        self.fit_ind = delta
+        
         # Define fixed params
         self.t0 = t0
         self.idx_tm = idx_tm

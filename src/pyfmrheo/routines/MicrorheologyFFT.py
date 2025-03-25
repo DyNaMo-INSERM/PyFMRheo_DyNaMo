@@ -2,6 +2,8 @@ import copy
 
 # Get data analysis tools
 from ..utils.force_curves import get_poc_RoV_method, get_poc_regulaFalsi_method
+
+
 from ..utils.signal_processing import detrend_rolling_average
 from .HertzFit import doHertzFit
 from ..models.rheology import ComputeComplexModulusFFT

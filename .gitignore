@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+#Mac OS stuff
+.DS_Store
+
 # Distribution / packaging
 .Python
 build/
@@ -131,3 +134,4 @@ dmypy.json
 # Tests
 *.txt
 *.xlsx
+src/pyfmrheo/models/ting.py

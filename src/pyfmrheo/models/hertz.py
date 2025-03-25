@@ -53,6 +53,11 @@ class HertzModel:
         self.Rsquared = None
         self.chisq = None
         self.redchi = None
+        #this is to store the max indentation of a fitted force curve
+        self.max_ind = None
+        #this is to store the sample height from a force curve
+        self.z_c = None
+
     
     def get_correction_coeffs(self, sample_height, indentation):
         correction_params = [sample_height, (indentation - self.delta0), self.ind_geom, self.tip_parameter]
@@ -117,7 +122,11 @@ class HertzModel:
 
     def fit(self, indentation, force, sample_height=None):
         # If sample height is given, assign sample height
+        self.run_fit_ident = indentation
+        self.run_fit_force = force
         self.sample_height = sample_height
+        
+        
         coeff, n = get_coeff(self.ind_geom, self.tip_parameter, self.poisson_ratio)
         self.E0_init = np.max(force) / coeff / np.max(indentation) ** n
         # Param order:
@@ -166,7 +175,15 @@ class HertzModel:
         return force - self.eval(indentation, sample_height)
 
     def get_chisq(self, indentation, force, sample_height=None):
+        
+        #residuals = self.get_residuals(indentation, force, sample_height)
+        # Only calculate where force is not zero
+        #weighted_res = (residuals[force != 0] ** 2) / force[force != 0]
+        # and getting a sum post filtering out non-finite values (e.g., NaN, inf)
+        #return np.sum(weighted_res[np.isfinite(weighted_res)])
+        
         a = (self.get_residuals(indentation, force, sample_height)**2/force)
+
         return np.sum(a[np.isfinite(a)])
     
     def get_red_chisq(self, indentation, force, sample_height=None):

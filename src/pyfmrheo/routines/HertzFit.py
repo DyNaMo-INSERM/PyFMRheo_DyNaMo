@@ -38,6 +38,7 @@ def doHertzFit(fdc, param_dict):
         comp_PoC = get_poc_regulaFalsi_method(
             segment_data.zheight, segment_data.vdeflection, param_dict['sigma'])
     poc = [comp_PoC[0], 0]
+    
     # Downsample signal
     if param_dict['downsample_flag']:
         downfactor= len(segment_data.zheight) // param_dict['pts_downsample']
@@ -45,6 +46,7 @@ def doHertzFit(fdc, param_dict):
         segment_data.zheight = segment_data.zheight[idxDown]
         segment_data.vdeflection = segment_data.vdeflection[idxDown]
     # Prepare data for the fit
+
     segment_data.get_force_vs_indentation(poc, param_dict['k'])
     indentation = segment_data.indentation
     force = segment_data.force
@@ -64,6 +66,7 @@ def doHertzFit(fdc, param_dict):
     force = np.r_[ncont_force, cont_force]
     # Perform fit
     hertz_model = HertzModel(param_dict['contact_model'], param_dict['tip_param'])
+
     hertz_model.fit_hline_flag = param_dict['fit_line']
     hertz_model.d0_init = param_dict['d0']
     if not param_dict['auto_init_E0']:
@@ -74,5 +77,9 @@ def doHertzFit(fdc, param_dict):
     if param_dict.get('fit_method', None) is not None:
         hertz_model.fit_method = param_dict['fit_method']
     hertz_model.fit(indentation, force)
+
+    hertz_model.z_c = poc[0]
+    hertz_model.max_ind = np.max(indentation[indentation>0])
+
     # Return fitted model object
     return hertz_model
