@@ -79,7 +79,7 @@ def doHertzFit(fdc, param_dict):
     hertz_model.fit(indentation, force)
 
     hertz_model.z_c = poc[0]
-    hertz_model.max_ind = np.max(indentation[indentation>0])
-
+    true_indentation = indentation - hertz_model.delta0
+    hertz_model.max_ind = np.max(true_indentation[true_indentation>0])
     # Return fitted model object
     return hertz_model
